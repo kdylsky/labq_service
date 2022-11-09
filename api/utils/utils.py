@@ -5,15 +5,15 @@ from api.utils.data_enums import  DataTpye
 from api.serializers import DrainPipeSchema, RainFallSchema
 from django.conf import settings
 
-type = DataTpye()
+base = DataTpye()
 
 class UrlSetter:
     def __init__(self, drainpipe_param):
         self.api_key = settings.API_KEY #공공API 요청 key
         self.drainpipe_param = drainpipe_param #url로 들어오는 하수도 구분코드
-        self.drainpipe_endparmas= type[self.drainpipe_param]["idn_cnt"] #구별 하수도 측정기 수              
-        self.rainfall_param =type[self.drainpipe_param]["gu_name"] #하수도 구분코드 -> 강수량 구분코드
-        self.rainfall_endparms =type[self.drainpipe_param]["raingauge_cnt"] # 구별 강수량 계량기 수
+        self.drainpipe_endparmas= base.data[self.drainpipe_param]["idn_cnt"] #구별 하수도 측정기 수              
+        self.rainfall_param =base.data[self.drainpipe_param]["gu_name"] #하수도 구분코드 -> 강수량 구분코드
+        self.rainfall_endparms =base.data[self.drainpipe_param]["raingauge_cnt"] # 구별 강수량 계량기 수
         self.time = datetime.now().now().strftime('%Y%m%d%H')  
         self.base_time = datetime.now().now().strftime('%Y%m%d')
     

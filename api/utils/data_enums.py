@@ -3,7 +3,7 @@ class DataTpye:
     raingauge_cnt   : 구별 계량기 수
     idn_cnt         : 구별 하수도 측정기 수
     """
-    type = {
+    data = {
         "01": {"gu_name":"종로구",
             "raingauge_cnt":2, 
             "idn_cnt": 4 

@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
 from decorators.execption_handler import execption_hanlder
-from drainpipe.service import LabqService
+from api.service import LabqService
 
 labq_service=LabqService()
 
