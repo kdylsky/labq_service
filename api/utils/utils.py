@@ -30,9 +30,7 @@ class UrlSetter:
         start_idx = end_idx-self.drainpipe_endparmas
         data = self._call_url(service_name, start_idx=start_idx, end_idx=end_idx)
         data = data["DrainpipeMonitoringInfo"]["row"]
-        serializer = DrainPipeSchema(data=data, many=True)
-        serializer.is_valid(raise_exception=True)
-        return serializer.data
+        return data
         
     def get_rainfall_list(self, service_name: str)-> dict:
         """
@@ -40,9 +38,7 @@ class UrlSetter:
         """
         data = self._call_url(service_name)
         data = data["ListRainfallService"]["row"]
-        serializer = RainFallSchema(data=data, many=True)
-        serializer.is_valid(raise_exception=True)
-        return serializer.data
+        return data
     
     def _call_url(self, service_name, **kwargs):
         if service_name == "DrainpipeMonitoringInfo":
