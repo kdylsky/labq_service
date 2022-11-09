@@ -2,14 +2,14 @@ from rest_framework import serializers
 
 class DrainPipeSchema(serializers.Serializer):
     """서울시 하수관 Open API 응답 파라이터"""
-    IDN=serializers.CharField(max_length=10)
-    GUBN=serializers.IntegerField()
-    GUBN_NAM=serializers.CharField(max_length=10)
-    MEA_YMD=serializers.DateTimeField()
-    MEA_WAL=serializers.FloatField()
-    SIG_STA=serializers.CharField(max_length=20)
-    REMARK=serializers.CharField(max_length=200)
-    RISK=serializers.SerializerMethodField()
+    IDN = serializers.CharField(max_length=10)
+    GUBN = serializers.IntegerField()
+    GUBN_NAM = serializers.CharField(max_length=10)
+    MEA_YMD = serializers.DateTimeField()
+    MEA_WAL = serializers.FloatField()
+    SIG_STA = serializers.CharField(max_length=20)
+    REMARK = serializers.CharField(max_length=200)
+    RISK = serializers.SerializerMethodField()
 
     def get_RISK(self,obj):
         if obj["MEA_WAL"]>=1 :
@@ -29,8 +29,8 @@ class RainFallSchema(serializers.Serializer):
     GU_CODE = serializers.FloatField()
     GU_NAME = serializers.CharField(max_length=10) 
     RAINFALL10 = serializers.IntegerField()
-    RECEIVE_TIME= serializers.DateTimeField()
-    RISK=serializers.SerializerMethodField()
+    RECEIVE_TIME = serializers.DateTimeField()
+    RISK = serializers.SerializerMethodField()
 
     def get_RISK(self,obj):
         if obj["RAINFALL10"] >=100 :

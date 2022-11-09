@@ -5,7 +5,7 @@ class LabqService:
         self.DrainpipeMonitoringInfo = "DrainpipeMonitoringInfo"
         self.ListRainfallService = "ListRainfallService"
     
-    def get_list(self, drainpipe_param):        
+    def get_list(self, drainpipe_param: str)-> dict:        
         url = UrlSetter(drainpipe_param)
         drainpipe = url.get_drainfall_list(self.DrainpipeMonitoringInfo)
         rainfall = url.get_rainfall_list(self.ListRainfallService)        
