@@ -20,11 +20,11 @@ def get_list(request, *awrg, **kwargs):
     return JsonResponse({"result":"result"})
 
 
-from api2.utils.utils import UpdateData 
+from api2.utils.utils import Real_call 
 
 class TestAPI(APIView):
     def get(self,request):
-        test = UpdateData()
-        test.update()
+        test = Real_call()
+        test.call_test()
         return JsonResponse({"result":"result"})
         

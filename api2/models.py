@@ -1,8 +1,8 @@
 from django.db import models
 
 class DrainPipe(models.Model):
-    gubn = models.IntegerField()
-    gubn_nam = models.CharField(max_length=10)
+    gubn = models.IntegerField(unique=True)
+    gubn_nam = models.CharField(max_length=10, unique=True)
 
     class Meta:
         db_table = "drainpipes"
@@ -15,8 +15,8 @@ class DetailDrainPipe(models.Model):
         DrainPipe,
         db_column = "gubn_id",
         on_delete = models.CASCADE)
-    idn = models.CharField(max_length=15)
-    mea_ymd = models.DateTimeField()
+    idn = models.CharField(max_length=15, unique=True)
+    mea_ymd = models.CharField(max_length=30)
     mea_wal = models.FloatField()
     sig_sta = models.CharField(max_length=20)
     remark = models.TextField()
@@ -28,8 +28,8 @@ class DetailDrainPipe(models.Model):
 
 
 class RainFall(models.Model):
-    gu_code = models.IntegerField()
-    gu_name = models.CharField(max_length=10)
+    gu_code = models.IntegerField(unique=True)
+    gu_name = models.CharField(max_length=10, unique=True)
 
     class Meta:
         db_table = "rainfalls"
@@ -43,12 +43,12 @@ class DetailRainFall(models.Model):
         db_column = "gu_code_id",
         on_delete = models.CASCADE
     )
-    raingauge_code = models.IntegerField()
+    raingauge_code = models.IntegerField(unique=True)
     raingauge_name = models.CharField(max_length=10)
     rainfall10 = models.IntegerField()
-    receive_time = models.DateTimeField()
+    receive_time = models.CharField(max_length=30)
 
     class Meta:
-        db_table = "detailrainfall"
+        db_table = "detailrainfalls"
         managed = True
         abstract = False
