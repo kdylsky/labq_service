@@ -10,4 +10,3 @@ class LabqService:
         drainpipe = url.get_drainfall_list(self.DrainpipeMonitoringInfo)
         rainfall = url.get_rainfall_list(self.ListRainfallService)        
         return {"DrainPipi":drainpipe, "Rainfall":rainfall}
-    
