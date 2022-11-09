@@ -20,10 +20,10 @@ class UpdateData:
         serialize_one = DrainPipeSchema(data=pipe_data, many=True, partial=True)
         serialize_one.is_valid(raise_exception=True)
         self._drainpipe_partial_update(serialize_one.data)
+        
         serialize_two = DetailDrainPipeSchema(data=pipe_data, many=True,partial=True)
         serialize_two.is_valid(raise_exception=True)    
         self._detaildrainpipe_partial_update(pipe_data)
-    
 
     def _drainpipe_partial_update(self, data):
         obj, flag = DrainPipe.objects.get_or_create(
@@ -51,8 +51,6 @@ class UpdateData:
                 obj.mea_wal = i["MEA_WAL"]
                 obj.sig_sta = i["SIG_STA"]
             obj.save()
-
-
 
     def update_rainfall(self):
         rain_data = self._get_rainall()
@@ -88,11 +86,3 @@ class UpdateData:
                 obj.rainfall10 = i["RAINFALL10"]
                 obj.receive_time = i["RECEIVE_TIME"]
             obj.save()
-
-class Real_call:
-    def call_test(self):
-        # for i in data.data.keys():
-        for i in ["01", "02"]:
-            a = UpdateData(i)
-            a.update_drainpipe()
-            a.update_rainfall()

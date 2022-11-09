@@ -4,8 +4,6 @@ from rest_framework.views import APIView
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
 from decorators.execption_handler import execption_hanlder
-from api.utils.data_enums import DataTpye
-from api.utils.exceptions import IncorrectGUBNError
 from api2.service import LabqService
 
 labq_service = LabqService()
@@ -18,13 +16,3 @@ class LabqAPIView(APIView):
 @parser_classes([JSONParser])
 def get_list(request, *awrg, **kwargs):
     return JsonResponse({"result":"result"})
-
-
-from api2.utils.utils import Real_call 
-
-class TestAPI(APIView):
-    def get(self,request):
-        test = Real_call()
-        test.call_test()
-        return JsonResponse({"result":"result"})
-        
