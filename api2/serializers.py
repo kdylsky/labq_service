@@ -42,3 +42,27 @@ class DetailRainFallSechema(serializers.ModelSerializer):
     class Meta:
         model = DetailRainFall
         fields = "GU_CODE", "RAINGAUGE_CODE", "RAINGAUGE_NAME", "RAINFALL10", "RECEIVE_TIME"
+
+
+class DrainPipeSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = DrainPipe
+        fields = "__all__"
+
+
+class DetailDrainPipeSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = DetailDrainPipe
+        fields = "__all__"
+
+
+class RainFallSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = RainFall
+        fields = "__all__"
+
+
+class DetailRainFallSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = DetailRainFall
+        fields = "__all__"

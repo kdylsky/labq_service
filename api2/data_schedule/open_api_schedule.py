@@ -4,7 +4,7 @@ from api2.utils.utils import UpdateData
 def start():
     scheduler = BackgroundScheduler()
     data_save = Real_call()
-    scheduler.add_job(data_save.call_test,"interval", minutes=1, id="data_001", replace_existing=True)
+    scheduler.add_job(data_save.call_test,"interval", minutes=60, id="data_001", replace_existing=True)
     scheduler.start()
 
 class Real_call:
