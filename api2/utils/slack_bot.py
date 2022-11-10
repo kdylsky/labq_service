@@ -3,6 +3,7 @@ import json
 from django.conf import settings
 
 def post_message(channel, text):
+    # 본인의 slack 채널명으로 대체
     # 본인이 발급받은 토큰값으로 대체
     SLACK_BOT_TOKEN = settings.SLACK_KEY
     headers = {
@@ -17,4 +18,3 @@ def post_message(channel, text):
                       headers=headers,
                       data=json.dumps(payload)
                       )
-

@@ -2,6 +2,7 @@ from rest_framework import serializers
 from api2.models import DrainPipe, DetailDrainPipe, RainFall, DetailRainFall
 
 class DrainPipeSchema(serializers.ModelSerializer):
+    """하수도 OpenAPI 요청 파라미터 for DrainPipe"""
     GUBN = serializers.IntegerField(source="gubn")
     GUBN_NAM = serializers.CharField(max_length=10, source="gubn_nam")
 
@@ -11,6 +12,7 @@ class DrainPipeSchema(serializers.ModelSerializer):
     
 
 class DetailDrainPipeSchema(serializers.ModelSerializer):
+    """하수도 OpenAPI 요청 파라미터 for DetailDrainPipe"""
     GUBN = serializers.IntegerField(source="drainpipe.gubn")
     IDN = serializers.CharField(max_length=15, source="idn")
     MEA_YMD = serializers.CharField(max_length=30, source="mea_ymd")
@@ -24,6 +26,7 @@ class DetailDrainPipeSchema(serializers.ModelSerializer):
 
 
 class RainFallSchema(serializers.ModelSerializer):
+    """강수량 OpenAPI 요청 파라미터 for RainFall"""
     GU_CODE = serializers.IntegerField(source="gu_code")
     GU_NAME = serializers.CharField(max_length=10, source="gu_name")
 
@@ -33,6 +36,7 @@ class RainFallSchema(serializers.ModelSerializer):
 
 
 class DetailRainFallSechema(serializers.ModelSerializer):
+    """강수량 OpenAPI 요청 파라미터 for DetailRainFall"""
     GU_CODE = serializers.IntegerField(source="rainfall.gu_code")
     RAINGAUGE_CODE = serializers.IntegerField(source="raingauge_code")
     RAINGAUGE_NAME = serializers.CharField(max_length=10, source="raingauge_name")
@@ -45,24 +49,28 @@ class DetailRainFallSechema(serializers.ModelSerializer):
 
 
 class DrainPipeSerialize(serializers.ModelSerializer):
+    """하수도 DB데이터 출력 serailizer for api2"""
     class Meta:
         model = DrainPipe
         fields = "__all__"
 
 
 class DetailDrainPipeSerialize(serializers.ModelSerializer):
+    """상세하수도 DB데이터 출력 serailizer for api2"""
     class Meta:
         model = DetailDrainPipe
         fields = "__all__"
 
 
 class RainFallSerialize(serializers.ModelSerializer):
+    """강수량 DB데이터 출력 serailizer for api2""" 
     class Meta:
         model = RainFall
         fields = "__all__"
 
 
 class DetailRainFallSerialize(serializers.ModelSerializer):
+    """상세강수량 DB데이터 출력 serailizer for api2"""
     class Meta:
         model = DetailRainFall
         fields = "__all__"

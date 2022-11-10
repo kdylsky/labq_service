@@ -3,11 +3,10 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
-from decorators.execption_handler import execption_hanlder
+from api.utils.data_enums import DataTpye
 from api2.service import LabqService
 from api2.utils.exceptions import IncorrectGUBNError
-from api.utils.data_enums import DataTpye
-
+from decorators.execption_handler import execption_hanlder
 
 labq_service = LabqService()
 

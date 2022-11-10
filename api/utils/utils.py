@@ -2,18 +2,17 @@ import requests as req
 from datetime import datetime
 from api.utils.exceptions import OpenAPIError
 from api.utils.data_enums import  DataTpye
-from api.serializers import DrainPipeSchema, RainFallSchema
 from django.conf import settings
 
 base = DataTpye()
 
 class UrlSetter:
     def __init__(self, drainpipe_param) -> None:
-        self.api_key = settings.API_KEY #공공API 요청 key
+        self.api_key = settings.API_KEY #공공API요청 key
         self.drainpipe_param = drainpipe_param #url로 들어오는 하수도 구분코드
-        self.drainpipe_endparmas = base.data[self.drainpipe_param]["idn_cnt"] #구별 하수도 측정기 수              
+        self.drainpipe_endparmas = base.data[self.drainpipe_param]["idn_cnt"] #"구"별 하수도 측정기 수              
         self.rainfall_param = base.data[self.drainpipe_param]["gu_name"] #하수도 구분코드 -> 강수량 구분코드
-        self.rainfall_endparms = base.data[self.drainpipe_param]["raingauge_cnt"] # 구별 강수량 계량기 수
+        self.rainfall_endparms = base.data[self.drainpipe_param]["raingauge_cnt"] # "구"별 강수량 계량기 수
         self.time = datetime.now().now().strftime('%Y%m%d%H')  
         self.base_time = datetime.now().now().strftime('%Y%m%d')
     
@@ -40,7 +39,8 @@ class UrlSetter:
         data = data["ListRainfallService"]["row"]
         return data
     
-    def _call_url(self, service_name, **kwargs):
+    def _call_url(self, service_name: str, **kwargs):
+        """실제 서울시 OpenAPI에 요청 함수"""
         if service_name == "DrainpipeMonitoringInfo":
             start_idx = kwargs.get("start_idx",1)
             end_idx = kwargs.get("end_idx",2)
@@ -48,7 +48,6 @@ class UrlSetter:
         
         elif service_name == "ListRainfallService":
             url=f"http://openapi.seoul.go.kr:8088/{self.api_key}/json/{service_name}/1/{self.rainfall_endparms}/{self.rainfall_param}"
-        
         res = req.get(url)
         data = res.json()
         if not data.get(service_name):
