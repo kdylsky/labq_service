@@ -13,5 +13,6 @@ class Config:
     databases: dict = yaml_settings["databases"]
     secrets: dict = yaml_settings["secrets"]
     key : dict = yaml_settings["key"]
+    slack : dict = yaml_settings["slack"]
 
 config = Config()

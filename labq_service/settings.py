@@ -24,6 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config.secrets["django"]
 
+API_KEY = config.key["apikey"]
+
+# Slack Message Key
+SLACK_KEY = config.slack["botkey"]
+SLACK_CHANNEL = config.slack["channel_name"]
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -40,7 +46,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'corsheaders',
-    'api'
+    'api',
+    'api2',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
