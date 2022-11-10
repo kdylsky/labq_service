@@ -26,6 +26,10 @@ SECRET_KEY = config.secrets["django"]
 
 API_KEY = config.key["apikey"]
 
+# Slack Message Key
+SLACK_KEY = config.slack["botkey"]
+SLACK_CHANNEL = config.slack["channel_name"]
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

@@ -8,3 +8,10 @@ databases:
 
 secrets:
   django: "django-something-something"
+
+key:
+  apikey: 'OpenAPI Key'  
+
+slack:
+  botkey: 'Slack Bot Key'
+  channel_name : '#channel name'
