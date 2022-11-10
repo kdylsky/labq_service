@@ -2,6 +2,8 @@ from api.utils.utils import UrlSetter
 from api.utils.data_enums import DataTpye
 from api2.serializers import DrainPipeSchema, DetailDrainPipeSchema, RainFallSchema, DetailRainFallSechema
 from api2.models import DrainPipe, DetailDrainPipe, RainFall, DetailRainFall
+from api2.utils.slack_bot import post_message
+from django.conf import settings
 
 data = DataTpye()
 
@@ -51,6 +53,9 @@ class UpdateData:
                 obj.mea_wal = i["MEA_WAL"]
                 obj.sig_sta = i["SIG_STA"]
             obj.save()
+            msg = self._message_drainpipe(obj.mea_wal, obj.idn)
+            if msg:
+                post_message(settings.SLACK_CHANNEL, msg)
 
     def update_rainfall(self):
         rain_data = self._get_rainall()
@@ -86,3 +91,25 @@ class UpdateData:
                 obj.rainfall10 = i["RAINFALL10"]
                 obj.receive_time = i["RECEIVE_TIME"]
             obj.save()
+            msg = self._message_rainfall(obj.rainfall10, obj.gu_code)
+            if msg:
+                post_message(settings.SLACK_CHANNEL, msg)
+
+    def _message_drainpipe(self, mea_wal, idn):
+        msg = None
+        if mea_wal >= 1:
+            msg = f"{idn} 위험 수위를 확인하세요"
+        elif mea_wal >= 0.8:
+            msg = f"{idn} 경고 수위를 확인하세요"
+        elif mea_wal >= 0.5:
+            msg = f"{idn} 주의 수위를 확인하세요"  
+        return msg
+    
+    def _message_rainfall(self, rainfall10, gu_code):
+        msg = None
+        
+        if int(rainfall10) >= 200:
+            msg = f"{gu_code} 대피하세요!!"
+        elif int(rainfall10) >= 100:
+            msg = f"{gu_code} 위험입니다."
+        return msg
