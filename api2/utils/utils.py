@@ -2,7 +2,7 @@ from api.utils.utils import UrlSetter
 from api.utils.data_enums import DataTpye
 from api2.serializers import DrainPipeSchema, DetailDrainPipeSchema, RainFallSchema, DetailRainFallSechema
 from api2.models import DrainPipe, DetailDrainPipe, RainFall, DetailRainFall
-from api2.utils.slack_bot import post_message
+from api2.slack_bot.slack_bot import post_message
 from django.conf import settings
 
 data = DataTpye()
