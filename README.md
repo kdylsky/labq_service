@@ -218,8 +218,12 @@ URL|Method|Description|</br>
 
 ### 01.api
 
-
+URL|Method|Description|
+|------|---|---|
 |"/api/\<str:gubn>"|GET|최신데이터 출력|
+
+<br>
+<br>
 
 
 DB에 접근하지 않고 OpenAPI 요청 후 바로 데이터 반환
@@ -298,8 +302,12 @@ DB에 접근하지 않고 OpenAPI 요청 후 바로 데이터 반환
 
 ### 02.api2
 
+URL|Method|Description|
+|------|---|---|
+|"/api2/\<str:gubn>"|GET|최신데이터 출력|
 
-|"/api/\<str:gubn>"|GET|최신데이터 출력|
+<br>
+<br>
 
 DB에 최신데이터 업데이트 후 데이터 반환
 
